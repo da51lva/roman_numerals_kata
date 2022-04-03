@@ -8,6 +8,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ConverterTest {
 
+
+    @Test
+    public void test0(){
+        Converter c = new Converter();
+
+        assertEquals(null, c.convertNumberToNumeral(0));
+    }
+
     @Test
     public void test1(){
         Converter c = new Converter();
