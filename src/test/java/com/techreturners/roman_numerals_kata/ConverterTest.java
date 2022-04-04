@@ -13,9 +13,6 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 class ConverterTest {
 
-    private static final String NUMERALS_TO_100_FILENAME = "numerals-1-to-99.csv";
-    private static final String NUMERALS_TO_3000_FILENAME = "numerals-1-to-3000.csv";
-
     Converter c;
 
     @BeforeEach
@@ -45,45 +42,21 @@ class ConverterTest {
 
     @Test
     public void test1To100() {
-
-        Scanner s = null;
-
-        try {
-
-            //load test resource
-            URL url =  getClass().getClassLoader().getResource(NUMERALS_TO_100_FILENAME);
-            if (url == null)
-                throw new FileNotFoundException();
-
-            File numeralsFile = new File(url.getFile());
-            s = new Scanner(numeralsFile);
-            s.useDelimiter(",");
-
-            //test every numeral in the test file ascending
-            int i = 1;
-            while (s.hasNext()) {
-                assertEquals(s.next(), c.convertNumberToNumeral(i));
-                i++;
-            }
-
-        } catch (FileNotFoundException e) {
-            fail("Error loading test resource file: "+NUMERALS_TO_100_FILENAME);
-            e.printStackTrace();
-        } finally {
-            if(s != null)
-                s.close();
-        }
+        testIntegerToNumeralConversionForNumeralsInFile("numerals-1-to-99.csv");
     }
 
     @Test
     public void test1To3000() {
+        testIntegerToNumeralConversionForNumeralsInFile("numerals-1-to-3000.csv");
+    }
 
+    private void testIntegerToNumeralConversionForNumeralsInFile(String filename){
         Scanner s = null;
 
         try {
 
             //load test resource
-            URL url =  getClass().getClassLoader().getResource(NUMERALS_TO_3000_FILENAME);
+            URL url =  getClass().getClassLoader().getResource(filename);
             if (url == null)
                 throw new FileNotFoundException();
 
@@ -99,7 +72,7 @@ class ConverterTest {
             }
 
         } catch (FileNotFoundException e) {
-            fail("Error loading test resource file: "+NUMERALS_TO_3000_FILENAME);
+            fail("Error loading test resource file: "+filename);
             e.printStackTrace();
         } finally {
             if(s != null)

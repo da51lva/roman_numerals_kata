@@ -70,7 +70,7 @@ public class Converter {
      */
     private int thousands(int i) {
         int numberOfThousands = (i / 1000) % 10;
-        return  numberOfThousands * 1000;
+        return  numberOfThousands * 1000; //multiply by 1000 to get actual value
     }
 
     /**
@@ -78,16 +78,20 @@ public class Converter {
      */
     private int hundreds(int i) {
         int numberOfHundreds = (i / 100) % 10;
-        return numberOfHundreds * 100;
+        return numberOfHundreds * 100; //multiply by 100 to get actual value
     }
 
-    //returns the Tens part of an int
+    /**
+     * Returns the Tens part of an int
+     */
     private int tens(int i) {
         int numberOfTens = (i / 10) % 10;
-        return numberOfTens * 10;
+        return numberOfTens * 10; //multiply by 10 to get actual value
     }
 
-    //returns the Ones part of an int
+    /**
+     * Returns the Ones part of an int
+     */
     private int ones(int i) {
         return i % 10;
     }
