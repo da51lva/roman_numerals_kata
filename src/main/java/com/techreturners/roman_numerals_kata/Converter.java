@@ -39,9 +39,12 @@ public class Converter {
             entry(3000, "MMM")
     );
 
+    /**
+     * Converts an int to a Roman numeral in the range of 1-3000 inclusive. Returns null if a given int is out of range.
+     */
     public String convertNumberToNumeral(int i) {
 
-        if (i < 1) return null;
+        if (i < 1 || i > 3000) return null;
 
         //Break int into Thousands, Hundreds, Tens and Ones
         int thousands = thousands(i);
@@ -58,8 +61,8 @@ public class Converter {
         //Concat each part
         return String.format(
                 "%s%s%s%s",
-                numeralsForThousands == null? "" : numeralsForThousands, //Map.get() returns null if key not present
-                numeralsForHundreds == null? "" : numeralsForHundreds,
+                numeralsForThousands == null ? "" : numeralsForThousands, //Map.get() returns null if key not present
+                numeralsForHundreds == null ? "" : numeralsForHundreds,
                 numeralForTens == null ? "" : numeralForTens,
                 numeralForOnes == null ? "" : numeralForOnes
         );
@@ -70,7 +73,7 @@ public class Converter {
      */
     private int thousands(int i) {
         int numberOfThousands = (i / 1000) % 10;
-        return  numberOfThousands * 1000; //multiply by 1000 to get actual value
+        return numberOfThousands * 1000; //multiply by 1000 to get actual value
     }
 
     /**
