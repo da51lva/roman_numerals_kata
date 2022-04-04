@@ -80,10 +80,16 @@ class ConverterTest {
         }
     }
 
-    @Test public void testGreaterThan3000(){
+    @Test 
+    public void testGreaterThan3000(){
         for(int i = 3001; i < Integer.MAX_VALUE; i++)
             assertEquals(null, c.convertNumberToNumeral(i));
+    }
 
+    @Test
+    public void testLessThan1(){
+        for(int i = 0; i > Integer.MIN_VALUE; i--)
+            assertEquals(null, c.convertNumberToNumeral(i));
     }
 
 
