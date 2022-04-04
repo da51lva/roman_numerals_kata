@@ -80,7 +80,7 @@ class ConverterTest {
         }
     }
 
-    @Test 
+    @Test
     public void testGreaterThan3000(){
         for(int i = 3001; i < Integer.MAX_VALUE; i++)
             assertEquals(null, c.convertNumberToNumeral(i));
