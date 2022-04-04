@@ -14,6 +14,7 @@ import static org.junit.jupiter.api.Assertions.fail;
 class ConverterTest {
 
     private static final String NUMERALS_TO_100_FILENAME = "numerals-1-to-99.csv";
+    private static final String NUMERALS_TO_3000_FILENAME = "numerals-1-to-3000.csv";
 
     Converter c;
 
@@ -67,6 +68,38 @@ class ConverterTest {
 
         } catch (FileNotFoundException e) {
             fail("Error loading test resource file: "+NUMERALS_TO_100_FILENAME);
+            e.printStackTrace();
+        } finally {
+            if(s != null)
+                s.close();
+        }
+    }
+
+    @Test
+    public void test1To3000() {
+
+        Scanner s = null;
+
+        try {
+
+            //load test resource
+            URL url =  getClass().getClassLoader().getResource(NUMERALS_TO_3000_FILENAME);
+            if (url == null)
+                throw new FileNotFoundException();
+
+            File numeralsFile = new File(url.getFile());
+            s = new Scanner(numeralsFile);
+            s.useDelimiter(",");
+
+            //test every numeral in the test file ascending
+            int i = 1;
+            while (s.hasNext()) {
+                assertEquals(s.next(), c.convertNumberToNumeral(i));
+                i++;
+            }
+
+        } catch (FileNotFoundException e) {
+            fail("Error loading test resource file: "+NUMERALS_TO_3000_FILENAME);
             e.printStackTrace();
         } finally {
             if(s != null)
